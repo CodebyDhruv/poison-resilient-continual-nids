@@ -1,0 +1,34 @@
+name: Research or implementation task
+description: Plan a focused capstone task.
+title: "[area] "
+labels: ["status: ready"]
+body:
+  - type: markdown
+    attributes:
+      value: "Use this for an implementable task with a clear research purpose."
+  - type: input
+    id: goal
+    attributes:
+      label: Goal
+      description: What outcome should this task produce?
+    validations:
+      required: true
+  - type: textarea
+    id: approach
+    attributes:
+      label: Proposed approach
+      description: Files, interfaces, or methodology affected.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Include tests, command, metric, or documentation evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies or risks
+      description: Dataset, interface, research, or timing dependencies.

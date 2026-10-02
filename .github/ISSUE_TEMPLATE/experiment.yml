@@ -1,0 +1,31 @@
+name: Experiment run
+description: Record a reproducible planned or completed experiment.
+title: "[experiment] "
+labels: ["type: experiment"]
+body:
+  - type: input
+    id: question
+    attributes:
+      label: Research question
+      description: What hypothesis or comparison is being tested?
+    validations:
+      required: true
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Configuration
+      description: Dataset, split, seed(s), model, replay, attack/defense settings.
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Planned metrics
+      description: At minimum include appropriate detection and continual-learning metrics.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome
+      description: Mark as planned, observed, or blocked. Do not fabricate results.
