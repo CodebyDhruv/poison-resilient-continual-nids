@@ -11,6 +11,7 @@ Branch: `main`
 - Inspected the remote repository, current branch, commits, documentation, dependency files, source files, tests, and local runtime.
 - Confirmed that the repository is a blueprint only; no implementation was overwritten.
 - Added the persistent context system and three-developer Review-2 interface contract.
+- Reworked `README.md` into the living Review-2 project front door, including status, ownership, interfaces, run-state rules, and documentation-update protocol.
 
 ## Currently working
 
@@ -27,6 +28,8 @@ No active implementation task.
 - `REVIEW2_CHECKLIST.md`
 - `README.md`
 - `docs/TEAM_WORKFLOW.md`
+- `README.md`
+- `TEAM_WORKFLOW.md`
 
 ## Tests run
 
