@@ -12,7 +12,7 @@ This is a reproducible research prototype, not a production IDS, SIEM, or autono
 
 The immediate goal is one basic working end-to-end demonstration. It deliberately prioritizes a demonstrable pipeline over advanced algorithms.
 
-\`\`\`text
+```text
 Flow-level CSV data
         -> preprocessing
         -> small tabular Transformer
@@ -21,14 +21,14 @@ Flow-level CSV data
         -> Task 1 -> Task 2 continual update
         -> label-flip poisoning comparison
         -> saved result manifest
-\`\`\`
+```
 
 ### Minimum demo requirements
 
 - Load and preprocess a documented flow-level dataset subset.
 - Train a small Transformer classifier and run inference.
 - Save accuracy, precision, recall, F1, and a confusion matrix where practical.
-- Flag low-confidence predictions as \`UNKNOWN\` using a configurable threshold baseline.
+- Flag low-confidence predictions as `UNKNOWN` using a configurable threshold baseline.
 - Run a two-task experiment and report Task 1 performance before and after Task 2, Task 2 performance, and forgetting.
 - Compare clean and configurable label-flip poisoned training conditions.
 - Provide one reproducible pipeline command and save its generated metrics.
@@ -54,9 +54,9 @@ Three developers work in parallel, without changing each other's core modules.
 
 | Developer | Branch | Owns | Review-2 deliverable |
 | --- | --- | --- | --- |
-| A - Model/NIDS | \`feature/model-nids\` | \`src/models/\`, \`src/training/\` | Small Transformer, training, prediction, checkpoint API |
-| B - Data/Continual Learning | \`feature/data-continual\` | \`src/data/\`, \`src/continual_learning/\`, data metadata | CSV pipeline, task stream, replay/incremental driver |
-| C - Novelty/Poisoning/Evaluation | \`feature/novelty-poisoning\` | \`src/novelty/\`, \`src/poisoning/\`, \`src/evaluation/\`, \`experiments/\` | Confidence novelty baseline, label flipping, metrics, result generation |
+| A - Model/NIDS | `feature/model-nids` | `src/models/`, `src/training/` | Small Transformer, training, prediction, checkpoint API |
+| B - Data/Continual Learning | `feature/data-continual` | `src/data/`, `src/continual_learning/`, data metadata | CSV pipeline, task stream, replay/incremental driver |
+| C - Novelty/Poisoning/Evaluation | `feature/novelty-poisoning` | `src/novelty/`, `src/poisoning/`, `src/evaluation/`, `experiments/` | Confidence novelty baseline, label flipping, metrics, result generation |
 
 Developer B is the integration coordinator. Full ownership, handoff, and conflict-prevention rules are in [TEAM_WORKFLOW.md](TEAM_WORKFLOW.md).
 
@@ -66,8 +66,8 @@ Parallel work must target the interfaces in [ARCHITECTURE.md](ARCHITECTURE.md).
 
 | From | To | Contract |
 | --- | --- | --- |
-| Data | Model | \`features\` (\`float32\`, shape \`(n_samples, n_features)\`), integer \`labels\`, fixed \`feature_names\`, and \`class_names\`. |
-| Model | Novelty/Evaluation | \`predict(X)\` plus \`predict_proba(X)\` aligned with the model's \`class_ids\`. |
+| Data | Model | `features` (`float32`, shape `(n_samples, n_features)`), integer `labels`, fixed `feature_names`, and `class_names`. |
+| Model | Novelty/Evaluation | `predict(X)` plus `predict_proba(X)` aligned with the model's `class_ids`. |
 | Novelty | Evaluation | Boolean unknown mask from a configurable confidence threshold. |
 | Poisoning | Training/Evaluation | Changed labels, changed row indices, configured/achieved rate, and seed; original labels remain available. |
 | Evaluation | Integration | JSON-serializable classification, continual-learning, and novelty metric dictionaries. |
@@ -76,7 +76,7 @@ Do not change an interface unilaterally. Propose the change, document it, and le
 
 ## Repository structure
 
-\`\`\`text
+```text
 src/
   data/                 Developer B - loading, validation, preprocessing, task splits
   models/               Developer A - tabular Transformer and prediction API
@@ -90,7 +90,7 @@ data/metadata/          Versioned dataset cards and feature/label metadata only
 experiments/            Runnable experiment notes and entry points
 results/                Generated outputs (ignored except auditable summaries)
 tests/                  Component smoke and integration tests
-\`\`\`
+```
 
 The source directories are planned ownership boundaries. They will contain implementation only as their owners add it.
 
@@ -99,7 +99,7 @@ The source directories are planned ownership boundaries. They will contain imple
 - No dataset is included or downloaded automatically.
 - The team should use a manageable, documented flow-level CSV subset for Review 2, preferably a CIC-IDS2017 subset supplied by the team.
 - Never commit raw datasets, processed data, checkpoints, secrets, or bulk generated outputs.
-- The observed environment is Python 3.14.6 with \`numpy\` and \`pandas\`; \`torch\` and \`scikit-learn\` are not installed or pinned yet.
+- The observed environment is Python 3.14.6 with `numpy` and `pandas`; `torch` and `scikit-learn` are not installed or pinned yet.
 - Developer B will coordinate a compatible dependency manifest before integration.
 
 Synthetic data is allowed for a smoke test only; it is not valid NIDS evidence.
@@ -107,28 +107,28 @@ Synthetic data is allowed for a smoke test only; it is not valid NIDS evidence.
 ## How to contribute
 
 1. Read [AGENTS.md](AGENTS.md), [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md), [TEAM_WORKFLOW.md](TEAM_WORKFLOW.md), [ARCHITECTURE.md](ARCHITECTURE.md), [PROJECT_STATUS.md](PROJECT_STATUS.md), and [HANDOFF.md](HANDOFF.md).
-2. Check \`git status --short --branch\` and the recent Git log.
+2. Check `git status --short --branch` and the recent Git log.
 3. Work only on your assigned feature branch and ownership area.
 4. Add a small smoke test or executable verification for your component.
 5. Record any experiment configuration, seed, dataset split, and output path.
-6. Open a focused pull request; do not merge directly to \`main\`.
+6. Open a focused pull request; do not merge directly to `main`.
 7. Update the component's README section, [PROJECT_STATUS.md](PROJECT_STATUS.md), and [HANDOFF.md](HANDOFF.md) through the integration process.
 
 ## Running the project
 
 There is **no runnable pipeline yet**. The intended Review-2 command, once Developer B integrates the implemented components, is:
 
-\`\`\`bash
+```bash
 python run_pipeline.py --config configs/review2_smoke.yaml
-\`\`\`
+```
 
-This command must not be documented as available until \`run_pipeline.py\`, the configuration file, dependencies, dataset instructions, and a successful observed smoke run are committed.
+This command must not be documented as available until `run_pipeline.py`, the configuration file, dependencies, dataset instructions, and a successful observed smoke run are committed.
 
 ## Reproducibility and research integrity
 
 Every experiment must record:
 
-\`\`\`text
+```text
 experiment name
 Git commit
 dataset source and version
@@ -139,7 +139,7 @@ poisoning rate and method, if used
 novelty/mitigation settings, if used
 metrics file and result location
 observed limitations
-\`\`\`
+```
 
 Use precise labels:
 
