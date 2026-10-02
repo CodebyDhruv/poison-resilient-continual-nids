@@ -12,6 +12,8 @@ venv/
 
 # Data and generated artifacts
 data/*.parquet
+data/*.zip
+data/**/*.zip
 data/raw/
 data/interim/
 data/processed/
