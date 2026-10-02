@@ -35,15 +35,15 @@ The timing-feature backdoor, CI/CII streams, periodic buffer audit, and a second
 | `configs/` | Versioned experiment configurations. |
 | `experiments/` | Runnable experiment entry points and notes. |
 | `tests/` | Unit and integration tests. |
-| `docs/` | Research, workflow, and decision documentation. |
+| Root context files | Persistent agent context, architecture, handoff, and Review-2 checklist. |
 | `data/` | Local data layout only; datasets are ignored by Git. |
 | `results/` | Generated metrics and figures; raw outputs are ignored by Git. |
 
 ## Getting started
 
-1. Read [the project blueprint](docs/PROJECT_BLUEPRINT.md) and [team workflow](docs/TEAM_WORKFLOW.md).
-2. Create an issue before beginning a non-trivial piece of work.
-3. Work in a focused branch, for example `data/cicids-preprocessing`.
+1. Read [agent instructions](AGENTS.md), [project context](PROJECT_CONTEXT.md), and [the architecture contract](ARCHITECTURE.md).
+2. Follow the three-owner [team workflow](TEAM_WORKFLOW.md) and create the assigned feature branch.
+3. Use the [Review-2 checklist](REVIEW2_CHECKLIST.md) to keep the build focused.
 4. Open a pull request using the provided template.
 5. Record every experiment's configuration, dataset version, seed, and result location.
 
